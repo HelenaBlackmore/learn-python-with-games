@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 2: Teach Your Game to Think!</title>
+  <style>
+    :root {
+      --bg: #11172b;
+      --panel: #1e2945;
+      --text: #f5f7ff;
+      --muted: #b8c5e0;
+      --yellow: #ffdc32;
+      --green: #50c878;
+      --purple: #c4a1ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      line-height: 1.65;
+    }
+
+    header, main, footer {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    header { padding: 42px 0 24px; }
+
+    h1 { font-size: clamp(2rem, 6vw, 3.3rem); line-height: 1.15; }
+    h2 { line-height: 1.3; }
+
+    p, li { color: var(--muted); }
+
+    a { color: var(--yellow); }
+
+    .eyebrow {
+      color: var(--purple);
+      text-transform: uppercase;
+      font-size: .85rem;
+      font-weight: bold;
+      letter-spacing: .08em;
+    }
+
+    .panel, .challenge {
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 18px 0;
+    }
+
+    .number {
+      color: var(--green);
+      font-weight: bold;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    code {
+      color: var(--yellow);
+      background: #10172a;
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 16px;
+      border-radius: 10px;
+      background: #10172a;
+      line-height: 1.6;
+    }
+
+    pre code { padding: 0; }
+
+    .button {
+      display: inline-block;
+      background: var(--green);
+      color: #10251a;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 11px 16px;
+      border-radius: 9px;
+      margin: 6px 5px 6px 0;
+    }
+
+    .button.secondary {
+      background: var(--yellow);
+      color: #29230b;
+    }
+
+    details {
+      margin-top: 16px;
+      padding: 12px;
+      background: #141d34;
+      border-radius: 8px;
+    }
+
+    summary { cursor: pointer; font-weight: bold; }
+
+    .goal {
+      border-left: 4px solid var(--green);
+      padding-left: 12px;
+    }
+
+    footer { padding: 30px 0; color: var(--muted); }
+
+    .challenge { scroll-margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Python for beginners · Chapter 2</p>
+    <h1>Teach Your Game to <span style="color: var(--purple)">Think!</span></h1>
+    <p>Your game can already move, catch stars and count points. Now let's teach it to make decisions.</p>
+    <a class="button" href="#lesson1">Start learning ↓</a>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>What is a condition?</h2>
+      <p>Imagine someone says: "If it's raining, take an umbrella." That's a decision. Python can make decisions in exactly the same way.</p>
+      <pre><code>if it_is_raining:
+    take_an_umbrella()</code></pre>
+      <p>Python checks whether a condition is true. If it is, it runs the indented code underneath it.</p>
+      <p>In our game, we already use conditions to check whether a star touches the player.</p>
+      <a class="button secondary" id="game-link"
+         href="https://portal.online-python.com/pygame"
+         target="_blank" rel="noopener">Open the game ↗</a>
+      <p><small>Use your shared game link here if you want children to open your specific project.</small></p>
+    </section>
+
+    <section class="challenge" id="lesson1">
+      <div class="number">Challenge 1 of 6</div>
+      <h2>🔍 Find a decision in your game</h2>
+      <p>Your game already contains this code:</p>
+      <pre><code>if player.colliderect(star):
+    score += 1
+    star.x = random.randint(0, WIDTH - star.width)
+    star.y = 0
+    star_speed += 1</code></pre>
+      <p><code>player.colliderect(star)</code> checks whether the player and star overlap.</p>
+      <p>If they overlap, Python runs the indented lines. The score increases and the star returns to the top.</p>
+      <p class="goal"><strong>Your task:</strong> find this code in your game. Explain what happens when the condition is true.</p>
+      <details>
+        <summary>Check your understanding</summary>
+        <p>The score increases by one, the star moves back to the top at a random horizontal position, and the star gets faster.</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>What do you think would happen if you removed the indented lines? Don't change your original game; try this in your own copy.</p>
+      </details>
+    </section>
+
+    <section class="challenge" id="lesson2">
+      <div class="number">Challenge 2 of 6</div>
+      <h2>✅ Make a decision using a number</h2>
+      <p>Python can compare numbers. For example:</p>
+      <pre><code>score = 10
+
+if score >= 10:
+    print("You are doing great!")</code></pre>
+      <p>The symbol <code>>=</code> means "greater than or equal to". The message appears because the score is 10.</p>
+      <p><strong>Your task:</strong> change the score to 5. Then change the condition to <code>score >= 5</code>. Try other numbers.</p>
+      <details>
+        <summary>Need a hint?</summary>
+        <p>Try changing one number at a time. Ask yourself whether the condition should be true or false.</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>Change the message to "Level complete!" and set the target score to 20.</p>
+      </details>
+    </section>
+
+    <section class="challenge" id="lesson3">
+      <div class="number">Challenge 3 of 6</div>
+      <h2>🔀 Meet <code>else</code></h2>
+      <p>What if you want the game to do something when a condition is false? Use <code>else</code>.</p>
+      <pre><code>score = 4
+
+if score >= 10:
+    print("You win!")
+else:
+    print("Keep trying!")</code></pre>
+      <p>Only one of these messages appears. If the score is at least 10, Python prints "You win!". Otherwise, it prints "Keep trying!".</p>
+      <p><strong>Your task:</strong> try scores of 4 and 12. Observe which message appears each time.</p>
+      <details>
+        <summary>Need a hint?</summary>
+        <p><code>else</code> doesn't need its own condition. It runs when the <code>if</code> condition is false.</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>Write your own two messages: one for a score of 10 or more, and another for a score below 10.</p>
+      </details>
+    </section>
+
+    <section class="challenge" id="lesson4">
+      <div class="number">Challenge 4 of 6</div>
+      <h2>❤️ Give the player more lives</h2>
+      <p>Your game ends when the number of misses reaches three:</p>
+      <pre><code>if misses >= 3:
+    # Game over code runs here</code></pre>
+      <p>Let's imagine you want to display a warning when the player has two misses.</p>
+      <pre><code>if misses >= 3:
+    print("Game over!")
+else:
+    print("Keep playing!")</code></pre>
+      <p><strong>Your task:</strong> change the example so it prints "Careful!" when the player has exactly two misses, and "Keep playing!" otherwise.</p>
+      <details>
+        <summary>Need a hint?</summary>
+        <p>Use <code>misses == 2</code> to check whether the number of misses is exactly two. Remember, <code>==</code> compares values; a single <code>=</code> assigns a value.</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>Try changing the warning to appear when there is only one life left. Think about what the number of misses represents in your game.</p>
+      </details>
+    </section>
+
+    <section class="challenge" id="lesson5">
+      <div class="number">Challenge 5 of 6</div>
+      <h2>🌈 Add more than two choices with <code>elif</code></h2>
+      <p>Sometimes a game needs more than two outcomes. Python has <code>elif</code>, which means "else if".</p>
+      <pre><code>score = 12
+
+if score >= 20:
+    print("Gold level!")
+elif score >= 10:
+    print("Silver level!")
+else:
+    print("Bronze level!")</code></pre>
+      <p>Python checks the conditions from top to bottom and runs the first matching branch. If none match, it runs <code>else</code>.</p>
+      <p><strong>Your task:</strong> try scores of 5, 12 and 25. What level does each score earn?</p>
+      <details>
+        <summary>Need a hint?</summary>
+        <p>For a score of 12, the first condition is false, but the second is true. Python prints "Silver level!".</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>Add a new level called "Platinum level!" for scores of 50 or more. Put its condition before the Gold condition.</p>
+      </details>
+    </section>
+
+    <section class="challenge" id="lesson6">
+      <div class="number">Challenge 6 of 6</div>
+      <h2>🚀 Make your game react to the score</h2>
+      <p>Now combine what you've learned. In your game, find the code that runs when the player catches a star:</p>
+      <pre><code>if player.colliderect(star):
+    score += 1</code></pre>
+      <p>You could use an <code>if</code> condition to make something happen when the score reaches a target.</p>
+      <pre><code>if score >= 10:
+    print("Amazing! Ten stars!")</code></pre>
+      <p><strong>Your task:</strong> experiment with a score condition. Start by changing the target from 10 to 3.</p>
+      <details>
+        <summary>Need a hint?</summary>
+        <p>In your actual game, the score condition needs to be inside the main game loop if you want it checked continuously. Be careful: a message printed every frame can appear many times.</p>
+      </details>
+      <details>
+        <summary>Challenge yourself</summary>
+        <p>Design a rule for your game: perhaps the star becomes faster after five points, or the player receives a special message after ten points. Try it in a copy of your code.</p>
+      </details>
+    </section>
+
+    <section class="panel">
+      <h2>🎉 Chapter complete!</h2>
+      <p>You have learned how to use <code>if</code>, <code>else</code>, <code>elif</code>, and comparison operators to make decisions in Python.</p>
+      <p>These are some of the building blocks of almost every game and program.</p>
+      <p><strong>Remember:</strong> indentation matters in Python. The lines belonging to an <code>if</code>, <code>elif</code>, or <code>else</code> block must be indented consistently.</p>
+      <a class="button" href="#lesson1">Review the challenges ↑</a>
+      <a class="button secondary" href="index.html">Back to Chapter 1 ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Make It Your Game! · Chapter 2: Decisions in Python.</p>
+  </footer>
+</body>
+</html>
